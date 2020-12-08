@@ -23,7 +23,7 @@ public class Student
 	[ExcelImport("Room", order = 3)]
 	public string Room { get; set; }
 	
-	[ExcelImport("PdfFilename", order = 8)]
+	[ExcelImport("PdfFilename", order = 9)]
 	public string PdfFilename { get; set; }
 	
 }
