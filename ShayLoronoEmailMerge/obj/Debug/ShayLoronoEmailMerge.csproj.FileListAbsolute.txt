@@ -1,0 +1,16 @@
+C:\Users\DRIVE_D\My Documents\_GIT_VCS\AspDotNetGabs\shaylorono-email-merge\ShayLoronoEmailMerge\bin\Debug\ShayLoronoEmailMerge.exe.config
+C:\Users\DRIVE_D\My Documents\_GIT_VCS\AspDotNetGabs\shaylorono-email-merge\ShayLoronoEmailMerge\bin\Debug\ShayLoronoEmailMerge.exe
+C:\Users\DRIVE_D\My Documents\_GIT_VCS\AspDotNetGabs\shaylorono-email-merge\ShayLoronoEmailMerge\bin\Debug\ShayLoronoEmailMerge.pdb
+C:\Users\DRIVE_D\My Documents\_GIT_VCS\AspDotNetGabs\shaylorono-email-merge\ShayLoronoEmailMerge\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\DRIVE_D\My Documents\_GIT_VCS\AspDotNetGabs\shaylorono-email-merge\ShayLoronoEmailMerge\bin\Debug\NPOI.dll
+C:\Users\DRIVE_D\My Documents\_GIT_VCS\AspDotNetGabs\shaylorono-email-merge\ShayLoronoEmailMerge\bin\Debug\NPOI.OOXML.dll
+C:\Users\DRIVE_D\My Documents\_GIT_VCS\AspDotNetGabs\shaylorono-email-merge\ShayLoronoEmailMerge\bin\Debug\NPOI.OpenXml4Net.dll
+C:\Users\DRIVE_D\My Documents\_GIT_VCS\AspDotNetGabs\shaylorono-email-merge\ShayLoronoEmailMerge\bin\Debug\NPOI.OpenXmlFormats.dll
+C:\Users\DRIVE_D\My Documents\_GIT_VCS\AspDotNetGabs\shaylorono-email-merge\ShayLoronoEmailMerge\bin\Debug\SimpleExcelImport.dll
+C:\Users\DRIVE_D\My Documents\_GIT_VCS\AspDotNetGabs\shaylorono-email-merge\ShayLoronoEmailMerge\bin\Debug\NPOI.xml
+C:\Users\DRIVE_D\My Documents\_GIT_VCS\AspDotNetGabs\shaylorono-email-merge\ShayLoronoEmailMerge\bin\Debug\SimpleExcelImport.pdb
+C:\Users\DRIVE_D\My Documents\_GIT_VCS\AspDotNetGabs\shaylorono-email-merge\ShayLoronoEmailMerge\obj\Debug\ShayLoronoEmailMerge.csprojResolveAssemblyReference.cache
+C:\Users\DRIVE_D\My Documents\_GIT_VCS\AspDotNetGabs\shaylorono-email-merge\ShayLoronoEmailMerge\obj\Debug\ShayLoronoEmailMerge.MainForm.resources
+C:\Users\DRIVE_D\My Documents\_GIT_VCS\AspDotNetGabs\shaylorono-email-merge\ShayLoronoEmailMerge\obj\Debug\ShayLoronoEmailMerge.csproj.GenerateResource.Cache
+C:\Users\DRIVE_D\My Documents\_GIT_VCS\AspDotNetGabs\shaylorono-email-merge\ShayLoronoEmailMerge\obj\Debug\ShayLoronoEmailMerge.exe
+C:\Users\DRIVE_D\My Documents\_GIT_VCS\AspDotNetGabs\shaylorono-email-merge\ShayLoronoEmailMerge\obj\Debug\ShayLoronoEmailMerge.pdb
