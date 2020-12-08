@@ -84,7 +84,7 @@ namespace ShayLoronoEmailMerge
 			bool success = true;
 			var sendList = (List<Student>)bindingSourceEPStudents.List;
 			
-			sendList.Take(5).ToList().ForEach(x => {
+			sendList.ToList().ForEach(x => {
 			    sendingStatusStrip.Text = "Sending email to " + x.StudentName + "...";
 			    string attachFile = Path.Combine(epFolderPath, "BELL REPORT", x.Room.Replace("Room ", string.Empty), x.PdfFilename.Trim() + ".pdf");
 			    string sendTo = x.Email; // "hewbertgabon@gmail.com";
