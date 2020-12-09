@@ -79,7 +79,7 @@ namespace ShayLoronoEmailMerge
 			bool success = true;
 			var sendList = (List<Student>)bindingSourceEPStudents.List;
 			
-			sendList.ToList().ForEach(x => {
+			sendList.ForEach(x => {
 			    sendingStatusStrip.Text = "Sending email to " + x.StudentName + "...";
 			    
 			    string attachFile1 = Path.Combine(epFolderPath, "BELL REPORT", "Parent's Report Card Information.pdf");
