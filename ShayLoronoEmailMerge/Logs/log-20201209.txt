@@ -1,0 +1,2 @@
+2020-12-10 00:15:43.632 C:\Users\DRIVE_D\My Documents\_GIT_VCS\AspDotNetGabs\shaylorono-email-merge\ShayLoronoEmailMerge\Logs\log-20201209.txt is created.
+2020-12-09 16:17:20.285 [ERROR]   Sending failed: 30986 Nada Jaruakkaranuwat

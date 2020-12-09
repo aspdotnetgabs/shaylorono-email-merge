@@ -27,18 +27,13 @@ namespace ShayLoronoEmailMerge
 		string message = @"<p>Dear EP Parents,</p><p>It’s very important that a child’s progress is carefully monitored throughout their school career, as educators and parents we need to know that our students/children are learning at the intended rate of development. </p>" 
 			+ "<p>The Cambridge University CEFR language development scale, which ranges from Pre A1 to C2, allows us to measure your child’s English language development from Grade 1 to Grade 12. This system identifies high performers together with students who require extra support. It’s essential, in an English based curriculum like EP, that our students have the language ability to follow their English and English based subject lessons. </p>" 
 			+ "<p>We also want to share this information with you through report cards. Attached to this email you will find two documents. The first, a PDF that explains the report card, what each section means and where the information came from. The second, your actual child’s report card. </p>" 
-			+ "<p>If you would like to know more about the CEFR scale please visit the Cambridge University website (https://www.cambridgeenglish.org/exams-and-tests/cefr/), if you have any questions or concerns please contact the EP office. </p><p>Kind regards,</p><p><br></p><p>Bob Jordan<br> Director of Studies <br>Bell Language Centre Assumption College Thonburi<p>";
+			+ "<p>If you would like to know more about the CEFR scale please visit the Cambridge University website (https://www.cambridgeenglish.org/exams-and-tests/cefr/), if you have any questions or concerns please contact the EP office. </p><p>Kind regards,</p><p><br></p><p><b>Bob Jordan</b><br> Director of Studies <br>Bell Language Centre Assumption College Thonburi<p>";
 		
 		public MainForm()
 		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
 			InitializeComponent();
+			SimpleLogger.Init(epFolderPath);
 			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
 		}
 		void BtnLoadExcelDataClick(object sender, EventArgs e)
 		{			
@@ -86,12 +81,20 @@ namespace ShayLoronoEmailMerge
 			
 			sendList.ToList().ForEach(x => {
 			    sendingStatusStrip.Text = "Sending email to " + x.StudentName + "...";
-			    string attachFile = Path.Combine(epFolderPath, "BELL REPORT", x.Room.Replace("Room ", string.Empty), x.PdfFilename.Trim() + ".pdf");
-			    string sendTo = x.Email; // "hewbertgabon@gmail.com";
+			    
+			    string attachFile1 = Path.Combine(epFolderPath, "BELL REPORT", "Parent's Report Card Information.pdf");
+			    string attachFile2 = Path.Combine(epFolderPath, "BELL REPORT", x.Room.Replace("Room ", string.Empty), x.PdfFilename.Trim() + ".pdf");
+			    
+			    string sendTo = "hewbertgabon@gmail.com"; // x.Email; // 
              	string subject = "Bell Report";
-             	string ccopy = "sensie325@gmail.com"; 
-             	success = EmailService.SendEmail(sendTo, subject, message, attachFile, ccopy);
+             	string ccopy = "sharonlorono@gmail.com"; 
+             	success = EmailService.SendEmail(sendTo, subject, message, attachFile1, attachFile2, ccopy);
              	sendingStatusStrip.Text = success ? "Successfully sent." : "Sending failed.";
+             	
+             	if(!success)
+             	{
+             		SimpleLogger.LogError("Sending failed: " + x.IDNumber + " " + x.StudentName);
+             	}
              });
 			
 			if(success)
@@ -110,16 +113,22 @@ namespace ShayLoronoEmailMerge
 			
 			var epStudent = (Student)bindingSourceEPStudents.Current; 
 			
-		    string attachFile = Path.Combine(epFolderPath, "BELL REPORT", epStudent.Room.Replace("Room ", string.Empty), epStudent.PdfFilename.Trim() + ".pdf");
-		    string sendTo = epStudent.Email;
+			string attachFile1 = Path.Combine(epFolderPath, "BELL REPORT", "Parent's Report Card Information.pdf");
+		    string attachFile2 = Path.Combine(epFolderPath, "BELL REPORT", epStudent.Room.Replace("Room ", string.Empty), epStudent.PdfFilename.Trim() + ".pdf");
+		    
+		    string sendTo = "hewbertgabon@gmail.com"; //epStudent.Email;
          	string subject = "Bell Report";
-         	string ccopy = "sensie325@gmail.com"; 
-         	var success = EmailService.SendEmail(sendTo, subject, message, attachFile, ccopy);	
+         	string ccopy = "sharonlorono@gmail.com"; 
+         	var success = EmailService.SendEmail(sendTo, subject, message, attachFile1, attachFile2, ccopy);	
          	
 			if(success)
 				MessageBox.Show("Emails sent successfully.");
 			else
+			{
+				SimpleLogger.LogError("Sending failed: " + epStudent.IDNumber + " " + epStudent.StudentName);
 				MessageBox.Show("Emails sending failed.");
+			}
+				
 			
 			btnSendOne.Enabled = true;         	
 		}

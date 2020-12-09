@@ -11,17 +11,17 @@ using System.Net.Mail;
 
 public static class EmailService
 {
-    private const string ACCOUNT_EMAIL = "noreply@bernardgabon.com";
-    private const string ACCOUNT_PASSWORD = "rlBqvdnxuta@jzfkm8gceZw6oyb&ih";
-    private const string SMTP_HOST = "mail.bernardgabon.com"; // smtp-mail.outlook.com, smtp.mail.yahoo.com
+	private const string ACCOUNT_EMAIL = "epcareerfiles@gmail.com";
+    private const string ACCOUNT_PASSWORD = "EPCAREERFILES2020";
+    private const string SMTP_HOST = "smtp.gmail.com"; // smtp-mail.outlook.com, smtp.mail.yahoo.com
     private const int SMTP_PORT = 587;
-    private const bool REQUIRE_SSL = false;
+    private const bool REQUIRE_SSL = true;
     private const char MULTI_MAILTO_SEPARATOR = ','; // semi-colon or comma
     private const bool IS_HTML = true;
-    private static string SUBJECT_LABEL = "[BernardGabon.com]";
+    private static string SUBJECT_LABEL = "";
 
     #region EmailServiceMethods
-    public static bool SendEmail(string mailTo, string subject, string body, string attachmentFile = "", string mailCc = "", string mailBc = "", string mailReplyTo = "")
+    public static bool SendEmail(string mailTo, string subject, string body, string attachmentFile = "", string attachmentFile2 = "", string mailCc = "", string mailBc = "", string mailReplyTo = "")
     {
         var smtp = new SmtpClient()
         {
@@ -53,6 +53,11 @@ public static class EmailService
             {
                 mail.Attachments.Add(new Attachment(attachmentFile));
             }
+			
+			if (!string.IsNullOrEmpty(attachmentFile2))
+            {
+                mail.Attachments.Add(new Attachment(attachmentFile2));
+            }			
 
             smtp.Send(mail);
             return true;
