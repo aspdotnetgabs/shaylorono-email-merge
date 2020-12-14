@@ -42,7 +42,7 @@ namespace ShayLoronoEmailMerge
 			var import = new ImportFromExcel();
 			import.LoadXlsx(data);            
 			//first parameter it's the sheet number in the excel workbook
-			//second parameter it's the number of rows to skip at the start(we have an header in the file)
+			//second parameter it's the number of rows to skip at the start(we have a header in the file)
 			epStudentMasterlist = import.ExcelToList<Student>(0, 1);   
 			epStudentMasterlist = epStudentMasterlist.Where(x => !string.IsNullOrWhiteSpace(x.IDNumber)).ToList();
 			bindingSourceEPStudents.DataSource = epStudentMasterlist;
@@ -58,11 +58,10 @@ namespace ShayLoronoEmailMerge
 			
 			string search = txtSearch.Text.Trim();
 			int n;
-			if (int.TryParse(search, out n)) {
+			if (int.TryParse(search, out n))
 				bindingSourceEPStudents.DataSource = epStudentMasterlist.Where(x => x.IDNumber == search).ToList();
-			} else {
+			else
 				bindingSourceEPStudents.DataSource = epStudentMasterlist.Where(x => x.StudentName.ToLower().Contains(search.ToLower())).ToList();
-			}
 		}
 		
 		void ComboBoxRoomsSelectedIndexChanged(object sender, EventArgs e)
@@ -74,6 +73,7 @@ namespace ShayLoronoEmailMerge
 		{
 			if (bindingSourceEPStudents.DataSource == null)
 				return;
+			
 			btnSendAll.Enabled = false;
 						
 			bool success = true;
@@ -84,7 +84,8 @@ namespace ShayLoronoEmailMerge
 			sendList.ForEach(x => {
 				sendingStatusStrip.Text = "Sending email to " + x.StudentName + "...";			    			   
 				string attachFile2 = Path.Combine(epFolderPath, "BELL REPORT", x.Room.Replace("Room ", string.Empty), x.PdfFilename.Trim() + ".pdf");			   
-				if (!System.IO.File.Exists(attachFile2)) {
+				if (!System.IO.File.Exists(attachFile2)) 
+				{
 					SimpleLogger.LogError("PDF File does not exist: " + x.IDNumber + " " + x.StudentName);
 					return;
 				}
@@ -95,7 +96,8 @@ namespace ShayLoronoEmailMerge
 				success = EmailService.SendEmail(sendTo, subject, message, attachFile1, attachFile2, ccopy);
 				sendingStatusStrip.Text = success ? "Successfully sent." : "Sending failed.";
              	
-				if (!success) {
+				if (!success) 
+				{
 					SimpleLogger.LogError("Sending failed: " + x.IDNumber + " " + x.StudentName);
 				}
 			});
@@ -118,7 +120,8 @@ namespace ShayLoronoEmailMerge
 			var epStudent = (Student)bindingSourceEPStudents.Current; 
 						
 			string attachFile2 = Path.Combine(epFolderPath, "BELL REPORT", epStudent.Room.Replace("Room ", string.Empty), epStudent.PdfFilename.Trim() + ".pdf");
-			if (!System.IO.File.Exists(attachFile2)) {
+			if (!System.IO.File.Exists(attachFile2)) 
+			{
 				MessageBox.Show("PDF File does not exist.");
 				SimpleLogger.LogError("PDF File does not exist: " + epStudent.IDNumber + " " + epStudent.StudentName);		    
 				return;
@@ -132,7 +135,8 @@ namespace ShayLoronoEmailMerge
          	
 			if (success)
 				MessageBox.Show("Emails sent successfully.");
-			else {
+			else 
+			{
 				SimpleLogger.LogError("Sending failed: " + epStudent.IDNumber + " " + epStudent.StudentName);
 				MessageBox.Show("Emails sending failed.");
 			}
