@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 using System.IO;
 using SimpleExcelImport;
@@ -32,6 +33,7 @@ namespace ShayLoronoEmailMerge
 		public MainForm()
 		{
 			InitializeComponent();
+			Button.CheckForIllegalCrossThreadCalls = false;
 			SimpleLogger.Init(epFolderPath);		
 		}
 		
@@ -71,6 +73,12 @@ namespace ShayLoronoEmailMerge
 		
 		void BtnSendAllClick(object sender, EventArgs e)
 		{
+	        Thread newThread= new Thread(SendAll);
+	        newThread.Start(); 
+		}
+		
+		void SendAll()
+		{
 			if (bindingSourceEPStudents.DataSource == null)
 				return;
 			
@@ -90,7 +98,7 @@ namespace ShayLoronoEmailMerge
 					return;
 				}
 			    
-				string sendTo = x.Email; 
+				string sendTo = x.Email;
 				string subject = "Bell Report";
 				string ccopy = "sharonlorono@gmail.com"; 
 				success = EmailService.SendEmail(sendTo, subject, message, attachFile1, attachFile2, ccopy);
@@ -108,6 +116,7 @@ namespace ShayLoronoEmailMerge
 				MessageBox.Show("Emails sending failed.");
 			
 			btnSendAll.Enabled = true;
+			sendingStatusStrip.Text = "Ready.";
 		}
 		
 		void BtnSendOneClick(object sender, EventArgs e)
@@ -143,5 +152,7 @@ namespace ShayLoronoEmailMerge
 							
 			btnSendOne.Enabled = true;         	
 		}
+
+		
 	}
 }

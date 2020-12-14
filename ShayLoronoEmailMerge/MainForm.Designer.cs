@@ -108,6 +108,7 @@ namespace ShayLoronoEmailMerge
 			this.roomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.pdfFilenameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.btnSendOne = new System.Windows.Forms.Button();
 			this.textBox8 = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.textBox7 = new System.Windows.Forms.TextBox();
@@ -131,7 +132,6 @@ namespace ShayLoronoEmailMerge
 			this.btnSendAll = new System.Windows.Forms.Button();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.sendingStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
-			this.btnSendOne = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSourceEPStudents)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
 			this.bindingNavigator1.SuspendLayout();
@@ -356,6 +356,17 @@ namespace ShayLoronoEmailMerge
 			this.tabPage2.Text = "Detail View";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
+			// btnSendOne
+			// 
+			this.btnSendOne.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnSendOne.Location = new System.Drawing.Point(385, 321);
+			this.btnSendOne.Name = "btnSendOne";
+			this.btnSendOne.Size = new System.Drawing.Size(137, 39);
+			this.btnSendOne.TabIndex = 16;
+			this.btnSendOne.Text = "Send";
+			this.btnSendOne.UseVisualStyleBackColor = true;
+			this.btnSendOne.Click += new System.EventHandler(this.BtnSendOneClick);
+			// 
 			// textBox8
 			// 
 			this.textBox8.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceEPStudents, "PdfFilename", true));
@@ -566,17 +577,6 @@ namespace ShayLoronoEmailMerge
 			this.sendingStatusStrip.Name = "sendingStatusStrip";
 			this.sendingStatusStrip.Size = new System.Drawing.Size(42, 17);
 			this.sendingStatusStrip.Text = "Ready.";
-			// 
-			// btnSendOne
-			// 
-			this.btnSendOne.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSendOne.Location = new System.Drawing.Point(385, 321);
-			this.btnSendOne.Name = "btnSendOne";
-			this.btnSendOne.Size = new System.Drawing.Size(137, 39);
-			this.btnSendOne.TabIndex = 16;
-			this.btnSendOne.Text = "Send";
-			this.btnSendOne.UseVisualStyleBackColor = true;
-			this.btnSendOne.Click += new System.EventHandler(this.BtnSendOneClick);
 			// 
 			// MainForm
 			// 
