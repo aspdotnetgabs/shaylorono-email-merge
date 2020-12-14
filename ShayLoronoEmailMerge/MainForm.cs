@@ -32,9 +32,9 @@ namespace ShayLoronoEmailMerge
 		public MainForm()
 		{
 			InitializeComponent();
-			SimpleLogger.Init(epFolderPath);
-			
+			SimpleLogger.Init(epFolderPath);		
 		}
+		
 		void BtnLoadExcelDataClick(object sender, EventArgs e)
 		{			
 		
@@ -50,6 +50,7 @@ namespace ShayLoronoEmailMerge
             var roomLookup = epStudentMasterlist.Select(s => s.Room).Distinct().ToArray();
             comboBoxRooms.Items.AddRange(roomLookup);
 		}
+		
 		void BtnSearchClick(object sender, EventArgs e)
 		{
 			if(string.IsNullOrWhiteSpace(txtSearch.Text)) return;
@@ -79,13 +80,18 @@ namespace ShayLoronoEmailMerge
 			bool success = true;
 			var sendList = (List<Student>)bindingSourceEPStudents.List;
 			
+			string attachFile1 = Path.Combine(epFolderPath, "BELL REPORT", "Parent's Report Card Information.pdf");
+			
 			sendList.ForEach(x => {
-			    sendingStatusStrip.Text = "Sending email to " + x.StudentName + "...";
+			    sendingStatusStrip.Text = "Sending email to " + x.StudentName + "...";			    			   
+			    string attachFile2 = Path.Combine(epFolderPath, "BELL REPORT", x.Room.Replace("Room ", string.Empty), x.PdfFilename.Trim() + ".pdf");			   
+			    if(!System.IO.File.Exists(attachFile2))
+			    {
+			    	SimpleLogger.LogError("PDF File does not exist: " + x.IDNumber + " " + x.StudentName);
+			    	return;
+			    }
 			    
-			    string attachFile1 = Path.Combine(epFolderPath, "BELL REPORT", "Parent's Report Card Information.pdf");
-			    string attachFile2 = Path.Combine(epFolderPath, "BELL REPORT", x.Room.Replace("Room ", string.Empty), x.PdfFilename.Trim() + ".pdf");
-			    
-			    string sendTo = "hewbertgabon@gmail.com"; // x.Email; // 
+			    string sendTo = x.Email; 
              	string subject = "Bell Report";
              	string ccopy = "sharonlorono@gmail.com"; 
              	success = EmailService.SendEmail(sendTo, subject, message, attachFile1, attachFile2, ccopy);
@@ -112,9 +118,15 @@ namespace ShayLoronoEmailMerge
 			btnSendOne.Enabled = false;
 			
 			var epStudent = (Student)bindingSourceEPStudents.Current; 
-			
-			string attachFile1 = Path.Combine(epFolderPath, "BELL REPORT", "Parent's Report Card Information.pdf");
+						
 		    string attachFile2 = Path.Combine(epFolderPath, "BELL REPORT", epStudent.Room.Replace("Room ", string.Empty), epStudent.PdfFilename.Trim() + ".pdf");
+	    	if(!System.IO.File.Exists(attachFile2))
+		    {
+	    		MessageBox.Show("PDF File does not exist.");
+		    	SimpleLogger.LogError("PDF File does not exist: " + epStudent.IDNumber + " " + epStudent.StudentName);		    
+		    	return;
+		    }	    	
+	    	string attachFile1 = Path.Combine(epFolderPath, "BELL REPORT", "Parent's Report Card Information.pdf");
 		    
 		    string sendTo = "hewbertgabon@gmail.com"; //epStudent.Email;
          	string subject = "Bell Report";
@@ -128,8 +140,7 @@ namespace ShayLoronoEmailMerge
 				SimpleLogger.LogError("Sending failed: " + epStudent.IDNumber + " " + epStudent.StudentName);
 				MessageBox.Show("Emails sending failed.");
 			}
-				
-			
+							
 			btnSendOne.Enabled = true;         	
 		}
 	}
